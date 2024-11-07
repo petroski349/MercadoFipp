@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Table(name="pergunta_anuncio")
 @Entity
-public class  Pergunta {
+public class Pergunta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="per_id")

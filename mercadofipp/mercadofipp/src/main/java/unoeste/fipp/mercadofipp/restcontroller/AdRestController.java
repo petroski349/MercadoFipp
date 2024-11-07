@@ -5,19 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unoeste.fipp.mercadofipp.db.entity.Ad;
 import unoeste.fipp.mercadofipp.db.repository.AdRepository;
+import unoeste.fipp.mercadofipp.service.AdService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value="apis/ad")
 public class AdRestController {
+    
     @Autowired
-    private AdRepository adRepository;
+    AdService adService;
 
     @GetMapping(value="get-one")
     public ResponseEntity<Object> getOne(Long id)
     {
-        Ad ad = adRepository.findById(id).get();
+        Ad ad=adService.getAd(id);
         if(ad!=null)
             return ResponseEntity.ok(ad);
         else
@@ -26,35 +28,29 @@ public class AdRestController {
     @GetMapping(value="get-many")
     public ResponseEntity<Object> getMany()
     {
-        List<Ad> adList = adRepository.findAll();
-        return ResponseEntity.ok(adList);
+        return ResponseEntity.ok(adService.getAll(""));
     }
     @GetMapping(value="get-with-filter")
     public ResponseEntity<Object> getWithFilter(String filtro)
     {
-        List<Ad> adList = adRepository.findWithFilter(filtro.toLowerCase());
-        return ResponseEntity.ok(adList);
+        return ResponseEntity.ok(adService.getAll(filtro));
     }
 
     @PostMapping(value="add")
     public ResponseEntity<Object> add(@RequestBody Ad ad) {
-        try {
-           ad = adRepository.save(ad);
+        ad = adService.addAd(ad);
+        if(ad!=null)
             return ResponseEntity.ok(ad);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        else
+            return ResponseEntity.badRequest().body("Erro");
+
     }
     @GetMapping(value="delete")
     public ResponseEntity<Object> delete(Long id)
     {
-        try {
-            adRepository.deleteById(id);
+        if(adService.delAd(id))
             return ResponseEntity.ok("ok");
-        }catch (Exception e)
-        {
+        else
             return ResponseEntity.badRequest().body("erro");
-        }
     }
-
 }
