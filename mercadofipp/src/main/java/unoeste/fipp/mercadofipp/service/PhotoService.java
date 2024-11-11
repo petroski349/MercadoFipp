@@ -12,5 +12,5 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
-   
+
 }
