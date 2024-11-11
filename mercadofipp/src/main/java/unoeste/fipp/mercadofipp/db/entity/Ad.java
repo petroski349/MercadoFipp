@@ -28,15 +28,15 @@ public class Ad {
     private User user;
 
     @OneToMany(mappedBy = "ad")
-    private List<Foto> fotos;
+    private List<Photo> fotos;
 
 
 
     @OneToMany(mappedBy = "ad")
-    private List<Pergunta> perguntas;
+    private List<Question> perguntas;
 
-    public Ad(Long id, String title, LocalDate date, String descr, double price, Category category, User user, List <Foto> fotos,
-              List <Pergunta> perguntas) {
+    public Ad(Long id, String title, LocalDate date, String descr, double price, Category category, User user, List <Photo> fotos,
+              List <Question> perguntas) {
         Id = id;
         this.title = title;
         this.date = date;
@@ -108,18 +108,18 @@ public class Ad {
         this.user = user;
     }
 
-    public List<Foto> getFotos() {
+    public List<Photo> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<Foto> fotos) {
+    public void setFotos(List<Photo> fotos) {
         this.fotos = fotos;
     }
-    public List<Pergunta> getPerguntas() {
+    public List<Question> getPerguntas() {
         return perguntas;
     }
 
-    public void setPerguntas(List<Pergunta> perguntas) {
+    public void setPerguntas(List<Question> perguntas) {
         this.perguntas = perguntas;
     }
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Table(name="pergunta_anuncio")
 @Entity
-public class Pergunta {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="per_id")
@@ -17,13 +17,13 @@ public class Pergunta {
     @JoinColumn(name = "anu_id")
     private Ad ad;
 
-    public Pergunta(Long id, String text, String resp) {
+    public Question(Long id, String text, String resp) {
         this.id = id;
         this.text = text;
         this.resp = resp;
     }
 
-    public Pergunta() {
+    public Question() {
         this(0L,"","");
     }
 

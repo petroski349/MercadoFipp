@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Table(name="foto_anuncio")
 @Entity
-public class Foto
+public class Photo
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +16,12 @@ public class Foto
     @JoinColumn(name = "anu_id")
     private Ad ad;
 
-    public Foto(Long id, String filename) {
+    public Photo(Long id, String filename) {
         this.id = id;
         this.filename = filename;
     }
 
-    public Foto() {
+    public Photo() {
         this(0L,"");
     }
 

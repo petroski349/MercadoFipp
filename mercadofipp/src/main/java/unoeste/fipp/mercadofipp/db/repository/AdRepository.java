@@ -10,4 +10,6 @@ import java.util.List;
 public interface AdRepository extends JpaRepository<Ad,Long> {
     @Query(value="SELECT * FROM anuncio WHERE lower(anu_title) LIKE %:filter% or lower(anu_desc) LIKE %:filter%",nativeQuery=true)
     List<Ad> findWithFilter(@Param("filter")String filter);
+
+    List<Ad> findTop5ByOrderByIdDesc();
 }

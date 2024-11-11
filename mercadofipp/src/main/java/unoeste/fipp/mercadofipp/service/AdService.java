@@ -12,37 +12,42 @@ import java.util.List;
 public class AdService {
     @Autowired
     private AdRepository adRepository;
-    public Ad getAd(Long id)
-    {
+
+    public Ad getAd(Long id) {
         Ad ad = adRepository.findById(id).get();
         return ad;
     }
-    public List<Ad> getAll(String filter){
-        List<Ad> adList=null;
-        if(filter.isEmpty())
-            adList= adRepository.findAll();
+
+    public List<Ad> getAll(String filter) {
+        List<Ad> adList = null;
+        if (filter.isEmpty())
+            adList = adRepository.findAll();
         else
-            adList=adRepository.findWithFilter(filter.toLowerCase());
+            adList = adRepository.findWithFilter(filter.toLowerCase());
         return adList;
     }
-    public Ad addAd(Ad ad){
-        try{
-            ad=adRepository.save(ad);
-        }
-        catch(Exception e){
-            ad=null;
+
+    public Ad addAd(Ad ad) {
+        try {
+            ad = adRepository.save(ad);
+        } catch (Exception e) {
+            ad = null;
         }
         return ad;
     }
-    public boolean delAd(Long id)
-    {
+
+    public boolean delAd(Long id) {
         try {
             adRepository.deleteById(id);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
-
+    public List<Ad> get5Latest() {
+        List<Ad> adList = null;
+        adList = adRepository.findTop5ByOrderByIdDesc();
+        return adList;
+    }
 }

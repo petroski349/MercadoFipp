@@ -53,4 +53,8 @@ public class AdRestController {
         else
             return ResponseEntity.badRequest().body("erro");
     }
+    @GetMapping(value = "lates")
+    public ResponseEntity<Object> lates(){
+        return ResponseEntity.ok(adService.get5Latest());
+    }
 }
