@@ -30,6 +30,7 @@ public class AdRestController {
     {
         return ResponseEntity.ok(adService.getAll(""));
     }
+
     @GetMapping(value="get-with-filter")
     public ResponseEntity<Object> getWithFilter(String filtro)
     {
