@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="interfaceadmin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>Painel Administrativo</h2>
+
+        <!-- Seção de Categorias -->
+        <div class="section">
+            <h3>Gerenciamento de Categorias</h3>
+            <input type="text" id="search-categories" placeholder="Buscar categorias...">
+            <button onclick="addCategory()">Adicionar Categoria</button>
+            <table id="categories-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Categorias serão listadas aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Seção de Anúncios -->
+        <div class="section">
+            <h3>Gerenciamento de Anúncios</h3>
+            <input type="text" id="search-ads" placeholder="Buscar anúncios...">
+            <button onclick="addAd()">Adicionar Anúncio</button>
+            <table id="ads-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Anúncios serão listados aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Seção de Usuários -->
+        <div class="section">
+            <h3>Gerenciamento de Usuários</h3>
+            <input type="text" id="search-users" placeholder="Buscar usuários...">
+            <button onclick="addUser()">Adicionar Usuário</button>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Usuários serão listados aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="interfaceadmin.js"></script>
+</body>
+</html>
