@@ -25,11 +25,14 @@ public class QuestionRestController {
         return ResponseEntity.ok(question);
     }
 
-//    @GetMapping(value = "add-response")
-//    public ResponseEntity<Object> addResponse(Long adId, String response){
-//        if(questionService.addResponse(response,adId)){
-//            return questionService.get
-//        }
-//    }
+    @GetMapping(value = "add-response")
+    public ResponseEntity<Object> addResponse(Long adId, String response){
+        if(questionService.addResponse(response,adId)){
+            return ResponseEntity.ok().body(true);
+        }
+        else{
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
 
 }

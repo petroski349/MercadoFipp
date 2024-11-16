@@ -12,8 +12,32 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category getCategory(Long id){
+    public Category get(Long id){
         Category category = categoryRepository.findById(id).get();
+        return category;
+    }
+
+    public List<Category> getAll(){
+        List<Category> categories = categoryRepository.findAll();
+        return categories;
+    }
+
+    public boolean delete(Long id){
+        try{
+            categoryRepository.deleteById(id);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
+    public  Category add(Category category){
+        try{
+            category = categoryRepository.save(category);
+        }catch (Exception e){
+            category = null;
+        }
         return category;
     }
 }
