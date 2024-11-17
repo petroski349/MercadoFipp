@@ -28,13 +28,13 @@ public class AdRestController {
     @GetMapping(value="get-many")
     public ResponseEntity<Object> getMany()
     {
-        return ResponseEntity.ok(adService.getAll(""));
+        return ResponseEntity.ok(adService.getAllAd(""));
     }
 
     @GetMapping(value="get-with-filter")
     public ResponseEntity<Object> getWithFilter(String filtro)
     {
-        return ResponseEntity.ok(adService.getAll(filtro));
+        return ResponseEntity.ok(adService.getAllAd(filtro));
     }
 
     @PostMapping(value="add")
@@ -49,13 +49,24 @@ public class AdRestController {
     @GetMapping(value="delete")
     public ResponseEntity<Object> delete(Long id)
     {
-        if(adService.delAd(id))
+        if(adService.deleteAd(id))
             return ResponseEntity.ok("ok");
         else
             return ResponseEntity.badRequest().body("erro");
     }
     @GetMapping(value = "lates")
     public ResponseEntity<Object> lates(){
-        return ResponseEntity.ok(adService.get5Latest());
+        return ResponseEntity.ok(adService.get5LatestAd());
+    }
+
+    @GetMapping(value = "get-category")
+    public ResponseEntity<Object> getAllByCategory(Long categoryId){
+        List<Ad> ads = adService.getAllByCategory(categoryId);
+        if(ads != null)
+            return ResponseEntity.ok(ads);
+        else
+            return ResponseEntity.ok().body("Erro");
     }
 }
+
+

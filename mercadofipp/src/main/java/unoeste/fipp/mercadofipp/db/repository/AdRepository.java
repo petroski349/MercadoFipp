@@ -12,4 +12,7 @@ public interface AdRepository extends JpaRepository<Ad,Long> {
     List<Ad> findWithFilter(@Param("filter")String filter);
 
     List<Ad> findTop5ByOrderByIdDesc();
+
+    @Query(value = "SELECT * FROM anuncio WHERE :categoryId = cat_id",nativeQuery = true)
+    List<Ad> findAllByCategory(@Param("categoryId")Long categoryId);
 }

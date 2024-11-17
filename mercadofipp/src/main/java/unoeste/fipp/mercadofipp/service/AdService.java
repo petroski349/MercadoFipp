@@ -18,7 +18,7 @@ public class AdService {
         return ad;
     }
 
-    public List<Ad> getAll(String filter) {
+    public List<Ad> getAllAd(String filter) {
         List<Ad> adList = null;
         if (filter.isEmpty())
             adList = adRepository.findAll();
@@ -36,7 +36,7 @@ public class AdService {
         return ad;
     }
 
-    public boolean delAd(Long id) {
+    public boolean deleteAd(Long id) {
         try {
             adRepository.deleteById(id);
             return true;
@@ -45,9 +45,19 @@ public class AdService {
         }
     }
 
-    public List<Ad> get5Latest() {
+    public List<Ad> get5LatestAd() {
         List<Ad> adList = null;
         adList = adRepository.findTop5ByOrderByIdDesc();
         return adList;
     }
+
+    public  List<Ad> getAllByCategory(Long categoryId){
+        List<Ad> ads;
+        ads = adRepository.findAllByCategory(categoryId);
+        return ads;
+    }
 }
+
+
+
+
