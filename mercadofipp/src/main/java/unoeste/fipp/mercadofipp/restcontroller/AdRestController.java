@@ -65,8 +65,6 @@ public class AdRestController {
         if(ads != null)
             return ResponseEntity.ok(ads);
         else
-            return ResponseEntity.ok().body("Erro");
+            return ResponseEntity.badRequest().body("Erro");
     }
 }
-
-
