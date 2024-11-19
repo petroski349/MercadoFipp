@@ -1,5 +1,6 @@
 package unoeste.fipp.mercadofipp.restcontroller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unoeste.fipp.mercadofipp.db.entity.Category;
+import unoeste.fipp.mercadofipp.restcontroller.security.JWTTokenProvider;
 import unoeste.fipp.mercadofipp.service.CategoryService;
 
 import java.util.List;
@@ -16,6 +18,9 @@ import java.util.List;
 public class CategoryRestController {
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    JWTTokenProvider jwtTokenProvider;
 
     @GetMapping(value ="get-one")
     public ResponseEntity<Object> getOne(Long id){

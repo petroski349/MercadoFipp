@@ -17,12 +17,13 @@ public class AccessFilter implements Filter {
                 throws IOException, ServletException {
             HttpServletRequest req = (HttpServletRequest) request;
             String token = req.getHeader("Authorization");
-            if (token == null && JWTTokenProvider.verifyToken(token)) {
+            System.out.println("token -> "+token);
+            if (token == null || !JWTTokenProvider.verifyToken(token)) {
                 ((HttpServletResponse)response).setStatus(500);
+                response.getOutputStream().write("Não autorizado ".getBytes());
             } else {
                 chain.doFilter(request, response);
             }
-            response.getOutputStream().write("Não autorizado ".getBytes());
         }
     }
 
