@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="Logo" class="logo-img"> <!-- Adicione a imagem aqui -->
+                Mercado FIPP
+            </a>
+            <ul class="nav-links">
+                <li><a href="paginicial.html">Início</a></li>
+                <li><a href="search.html">Anúncios</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button onclick="location.href='login.html'">Login</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Carrossel de Informações -->
+    <section class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active"><img src="img/banner1.png" alt="Promoção 1"></div>
+            <div class="carousel-slide"><img src="img/banner2.png" alt="Promoção 2"></div>
+            <div class="carousel-slide"><img src="img/banner3.png" alt="Promoção 3"></div>
+        </div>
+        <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+    </section>
+    
+
+    <!-- Anúncios -->
+    <section class="ad-section">
+
+        <!-- puxar os anúncios que foram cadastrados recentemente (NÃO SEI COMO VAI FICAR)-->
+                <div class="ads-container">
+            <div class="ad">
+                <img src="ad1.jpg" alt="Anúncio 1">
+                <p>Produto 1 - R$ 100,00</p>
+            </div>
+            <div class="ad">
+                <img src="ad2.jpg" alt="Anúncio 2">
+                <p>Produto 2 - R$ 200,00</p>
+            </div>
+            <div class="ad">
+                <img src="ad3.jpg" alt="Anúncio 3">
+                <p>Produto 3 - R$ 300,00</p>
+            </div>
+            <div class="ad">
+                <img src="ad4.jpg" alt="Anúncio 4">
+                <p>Produto 4 - R$ 400,00</p>
+            </div>
+            <div class="ad">
+                <img src="ad5.jpg" alt="Anúncio 5">
+                <p>Produto 5 - R$ 500,00</p>
+            </div>
+        </div>
+    </section>
+    
+
+    
+
+    <script src="main.js"></script>
+</body>
+</html>

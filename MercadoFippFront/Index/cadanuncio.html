@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Anúncio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cadanuncio.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo" class="logo-img"> Mercado FIPP
+            </a>
+            <ul class="nav-links">
+                <li><a href="paginicial.html">Início</a></li>
+                <li><a href="search.html">Anúncios</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Formulário de Cadastro de Anúncio -->
+    <section class="form-container">
+        <h2>Cadastro de Anúncio</h2>
+        <form action="/submit-anuncio" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo">Título do Anúncio</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Digite o título do anúncio" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva o produto ou serviço" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="moda">Livros</option>
+                    <option value="imoveis">Imóveis</option>
+                    <option value="automoveis">Automóveis</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data de Anúncio</label>
+                <input type="date" id="data" name="data" required>
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="number" id="valor" name="valor" placeholder="Digite o valor do anúncio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fotos">Fotos (até 3 imagens)</label>
+                <input type="file" id="fotos" name="fotos[]" accept="image/*" multiple required>
+            </div>
+
+            <button type="submit">Cadastrar Anúncio</button>
+        </form>
+    </section>
+
+</body>
+</html>

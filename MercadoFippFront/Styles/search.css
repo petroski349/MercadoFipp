@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #0058b6;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo-img {
+    width: 40px;
+    margin-right: 8px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex: 1; /* Permite centralização */
+    justify-content: center; /* Centraliza os links */
+    margin-left: 250px;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.navbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+/* Barra de Pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s ease;
+    font-size: 14px;
+}
+
+.search-container input[type="text"]:focus {
+    border-color: #0058b6;
+}
+
+.search-container button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #ffffff;
+    color: #0058b6;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Separador "ou" */
+.separator {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Botão Criar Anúncio */
+.create-ad-button {
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #0058b6;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.create-ad-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Resultados da Pesquisa */
+.search-results {
+    padding: 20px;
+    text-align: center;
+}
+
+.search-results h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ads-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ad {
+    background-color: white;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.ad img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ad p {
+    font-size: 16px;
+    font-weight: bold;
+}
