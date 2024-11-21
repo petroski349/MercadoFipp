@@ -11,7 +11,7 @@ async function loadQuestionsAndAnswers() {
     
     async function loadQuestionsAndAnswers() {
         try {
-            const response = await fetch('https://localhost:8080/apis/question/get-many');
+            const response = await fetch('http://localhost:8080/apis/question/get-many');
             const data = await response.json();
     
             const chatBox = document.getElementById('chat-box');
@@ -38,7 +38,7 @@ async function loadQuestionsAndAnswers() {
         if (!question) return;
     
         try {
-            const response = await fetch('https://localhost:8080/apis/question/add-question', {
+            const response = await fetch('http://localhost:8080/apis/question/add-question', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ async function loadQuestionsAndAnswers() {
         }
     });
     
-        const response = await fetch('https://localhost:8080/apis/question/add-response');
+        const response = await fetch('http://localhost:8080/apis/question/add-response');
         const data = await response.json();
 
         const chatBox = document.getElementById('chat-box');

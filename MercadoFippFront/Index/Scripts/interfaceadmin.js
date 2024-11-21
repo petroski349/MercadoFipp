@@ -6,7 +6,7 @@ async function login() {
     const password = document.getElementById('password').value;
 
     // Simulação de requisição ao servidor
-    const response = await fetch('https://localhost:8080/apis/access/login', {
+    const response = await fetch('http://localhost:8080/apis/access/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -26,7 +26,7 @@ async function login() {
 
 // Função para carregar categorias
 async function loadCategories() {
-    const response = await fetch('https://localhost:8080/apis/category/get-many', {
+    const response = await fetch('http://localhost:8080/apis/category/get-many', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -56,7 +56,7 @@ async function loadCategories() {
 async function addCategory() {
     const newCategory = document.getElementById('new-category').value;
 
-    const response = await fetch('https://localhost:8080/apis/category/add', {
+    const response = await fetch('http://localhost:8080/apis/category/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -8,7 +8,7 @@
     }
 
     try {
-        const response = await fetch(`https://localhost:8080/apis/ad/get-one?id=${adId}`);
+        const response = await fetch(`http://localhost:8080/apis/ad/get-one?id=${adId}`);
         if (response.ok) {
             const ad = await response.json();
 

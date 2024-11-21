@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = loginForm['user-type'].value;
 
         try {
-            const response = await fetch('https://localhost:8080/access/login', {
+            const response = await fetch('http://localhost:8080/access/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = registerForm['user-type'].value;
 
         try {
-            const response = await fetch('https://localhost:8080/access/register', {
+            const response = await fetch('http://localhost:8080/access/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
