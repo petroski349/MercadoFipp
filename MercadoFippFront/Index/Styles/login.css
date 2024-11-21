@@ -16,44 +16,6 @@ body {
     overflow: hidden;
 }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #0058b6;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.logo-img {
-    width: 40px;
-    height: auto;
-    margin-right: 8px;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-}
 
 /* Container Principal */
 .container {
@@ -165,3 +127,87 @@ select {
     font-family: 'Poppins', sans-serif;
   }
   
+
+  /* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #0058b6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 40px;
+    height: auto;
+    margin-right: 8px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #d9e7f7;
+}
+
+/* Botão de Login */
+.auth-buttons button {
+    background-color: #ffffff;
+    color: #0058b6;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-buttons button:hover {
+    background-color: #003f89;
+    color: #ffffff;
+}
+
+/* Navbar Responsiva */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .auth-buttons {
+        margin-top: 10px;
+    }
+}

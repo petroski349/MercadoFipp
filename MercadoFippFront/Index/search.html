@@ -41,74 +41,7 @@
         </div>
     </section>
 
-    <script>
-        // Simulação de um backend (substitua pelo seu fetch ao backend)
-        const ads = [
-            {
-                title: "Notebook Gamer Acer",
-                description: "Ótimo desempenho para jogos e trabalho.",
-                price: "R$ 3.500,00",
-                location: "Presidente Prudente, SP"
-            },
-            {
-                title: "Smartphone Samsung Galaxy",
-                description: "Em excelente estado, sem arranhões.",
-                price: "R$ 1.200,00",
-                location: "São Paulo, SP"
-            },
-            {
-                title: "Bicicleta Caloi Elite",
-                description: "Ideal para trilhas, pouco uso.",
-                price: "R$ 2.000,00",
-                location: "Campinas, SP"
-            }
-        ];
-
-        const adsContainer = document.getElementById('adsContainer');
-        const searchForm = document.getElementById('searchForm');
-        const searchInput = document.getElementById('searchInput');
-
-        // Renderiza os anúncios na tela
-        function renderAds(filteredAds) {
-            adsContainer.innerHTML = ""; // Limpa os resultados anteriores
-            if (filteredAds.length === 0) {
-                adsContainer.innerHTML = "<p>Nenhum anúncio encontrado.</p>";
-                return;
-            }
-            filteredAds.forEach(ad => {
-                const adElement = `
-                    <div class="ad-item">
-                        <h3>${ad.title}</h3>
-                        <p>${ad.description}</p>
-                        <p><strong>Preço:</strong> ${ad.price}</p>
-                        <p><strong>Local:</strong> ${ad.location}</p>
-                    </div>
-                `;
-                adsContainer.innerHTML += adElement;
-            });
-        }
-
-        // Filtra os anúncios com base na busca
-        function filterAds(query) {
-            const lowerQuery = query.toLowerCase();
-            return ads.filter(ad =>
-                ad.title.toLowerCase().includes(lowerQuery) ||
-                ad.description.toLowerCase().includes(lowerQuery) ||
-                ad.location.toLowerCase().includes(lowerQuery)
-            );
-        }
-
-        // Lida com o envio do formulário de busca
-        searchForm.addEventListener('submit', event => {
-            event.preventDefault(); // Evita o recarregamento da página
-            const query = searchInput.value.trim();
-            const filteredAds = filterAds(query);
-            renderAds(filteredAds);
-        });
-
-        // Carrega todos os anúncios ao abrir a página
-        renderAds(ads);
-    </script>
+    <script src="Scripts/search.js"></script>
 
 </body>
 </html>
