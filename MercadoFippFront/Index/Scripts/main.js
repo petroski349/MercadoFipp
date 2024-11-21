@@ -47,11 +47,3 @@ function displayAds(ads) {
     });
 }
 
-// Chama a função para carregar anúncios quando a página for carregada
-document.addEventListener('DOMContentLoaded', fetchAds);
-
-const token = localStorage.getItem('authToken');
-if (!token) {
-    alert('Você precisa fazer login.');
-    window.location.href = '/login.html'; // Redireciona para a página de login
-}
