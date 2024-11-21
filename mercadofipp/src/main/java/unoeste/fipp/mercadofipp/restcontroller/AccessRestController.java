@@ -46,6 +46,19 @@ public class AccessRestController {
 
     }
 
+    @PostMapping(value = "alterar-senha")
+    public ResponseEntity<Object> alterarSenha(String name,String novaSenha){
+        User user = userService.get(name);
+        if(user != null){
+            if(userService.alterarSenha(user.getId(),novaSenha))
+                return ResponseEntity.ok().body("Senha alterada com sucesso");
+            else
+                return ResponseEntity.badRequest().body("Falha ao alterar a senha");
+        }
+        else
+            return ResponseEntity.badRequest().body("login de usuário não cadastrado");
+    }
+
 //    @PostMapping(value = "get-user")
 //    public ResponseEntity<Object> processToken(String token) {
 //        Claims claims = null;

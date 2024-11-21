@@ -1,10 +1,12 @@
 package unoeste.fipp.mercadofipp.restcontroller;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unoeste.fipp.mercadofipp.db.entity.Ad;
 import unoeste.fipp.mercadofipp.db.repository.AdRepository;
+import unoeste.fipp.mercadofipp.restcontroller.security.JWTTokenProvider;
 import unoeste.fipp.mercadofipp.service.AdService;
 
 import java.util.List;
@@ -14,7 +16,10 @@ import java.util.List;
 public class AdRestController {
     
     @Autowired
-    AdService adService;
+    private AdService adService;
+
+    @Autowired
+    private JWTTokenProvider jwtTokenProvider;
 
     @GetMapping(value="get-one")
     public ResponseEntity<Object> getOne(Long id)
@@ -47,12 +52,20 @@ public class AdRestController {
 
     }
     @GetMapping(value="delete")
-    public ResponseEntity<Object> delete(Long id)
+    public ResponseEntity<Object> delete(Long id,@RequestHeader("Authorization") String token)
     {
-        if(adService.deleteAd(id))
-            return ResponseEntity.ok("ok");
-        else
-            return ResponseEntity.badRequest().body("erro");
+        Claims claims = jwtTokenProvider.getAllClaimsFromToken(token);
+        String nivel = (String) claims.get("nivel");
+        String name = (String) claims.get("usuario");
+        if(nivel == "2" || adService.isMyAd(name,id)) {
+            if (adService.deleteAd(id))
+                return ResponseEntity.ok("ok");
+            else
+                return ResponseEntity.badRequest().body("erro");
+        }
+        else{
+           return ResponseEntity.badRequest().body("Acesso negado");
+        }
     }
     @GetMapping(value = "lates")
     public ResponseEntity<Object> lates(){
@@ -66,5 +79,13 @@ public class AdRestController {
             return ResponseEntity.ok(ads);
         else
             return ResponseEntity.badRequest().body("Erro");
+    }
+
+    @GetMapping(value = "my-ad")
+    public ResponseEntity<Object> getAllByUser(@RequestHeader("Authorization") String token){
+        Claims claims = jwtTokenProvider.getAllClaimsFromToken(token);
+        String user = (String) claims.get("usuario");
+        List<Ad> ads = adService.getALLByUser(user);
+        return ResponseEntity.ok(ads);
     }
 }

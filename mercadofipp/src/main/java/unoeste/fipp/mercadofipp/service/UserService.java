@@ -20,4 +20,13 @@ public class UserService {
         return user;
     }
 
+    public boolean alterarSenha(Long id,String senhaNova){
+        try{
+            userRepository.updateSenha(senhaNova,id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }
