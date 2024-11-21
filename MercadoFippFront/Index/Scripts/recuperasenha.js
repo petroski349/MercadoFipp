@@ -4,7 +4,7 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
     const email = document.getElementById("email").value;
 
     try {
-        const response = await fetch("http://localhost:3000/access/recuperar-senha", {
+        const response = await fetch("http://localhost:8080/access/recuperar-senha", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -43,7 +43,7 @@ document.getElementById("submit-new-password").addEventListener("click", async (
     }
 
     try {
-        const response = await fetch("http://localhost:3000/atualizar-senha", {
+        const response = await fetch("http://localhost:8080/atualizar-senha", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

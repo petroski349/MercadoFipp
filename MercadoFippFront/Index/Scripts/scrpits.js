@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = registerForm['user-type'].value;
 
         try {
-            const response = await fetch('https://sua-api.com/register', {
+            const response = await fetch('http://sua-api.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
