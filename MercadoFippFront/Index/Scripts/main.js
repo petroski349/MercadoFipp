@@ -1,5 +1,5 @@
 // URL da API para buscar os anúncios mais recentes
-const apiUrl = 'https://seu-dominio.com/apis/ad/latest'; // Substitua pela URL correta da sua API
+const apiUrl = 'https://localhost:8080/apis/ad/latest'; 
 
 // Função para buscar anúncios da API
 async function fetchAds() {

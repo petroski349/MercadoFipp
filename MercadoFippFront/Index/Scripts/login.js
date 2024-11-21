@@ -5,16 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerButton = document.getElementById('register');
     const container = document.getElementById('container');
 
-    // Alterna para o formulário de login
-    loginButton.addEventListener('click', () => {
-        container.classList.remove('right-panel-active');
-    });
-
-    // Alterna para o formulário de registro
-    registerButton.addEventListener('click', () => {
-        container.classList.add('right-panel-active');
-    });
-
+   
     // Evento de envio do formulário de login
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -24,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = loginForm['user-type'].value;
 
         try {
-            const response = await fetch('https://sua-api.com/login', {
+            const response = await fetch('https://localhost:8080/access/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = registerForm['user-type'].value;
 
         try {
-            const response = await fetch('https://sua-api.com/register', {
+            const response = await fetch('https://localhost:8080/access/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
