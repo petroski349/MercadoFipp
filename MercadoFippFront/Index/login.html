@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Styles/style.css" />
+    <link rel="stylesheet" href="Styles/login.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -14,45 +14,74 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
     <title>Login</title>
   </head>
   <body>
-        <!-- Navbar -->
-        <header>
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <img src="img/logo.png" alt="Logo" class="logo-img"> Mercado FIPP
-                </a>
-                <ul class="nav-links">
-                    <li><a href="paginicial.html">Início</a></li>
-                    <li><a href="search.html">Anúncios</a></li>
-                    <li><a href="ajuda.html">Ajuda</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Logo" class="logo-img" /> Mercado FIPP
+        </a>
+        <ul class="nav-links">
+          <li><a href="paginicial.html">Início</a></li>
+          <li><a href="search.html">Anúncios</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <div class="container" id="container">
+      <!-- Formulário de Cadastro -->
       <div class="sign-up">
-        <form>
+        <form id="register-form">
           <h1>Criar Conta</h1>
-          <input type="text" placeholder="Nome" />
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Senha" />
-          <button>Registrar</button>
+          <input type="text" placeholder="Nome" name="name" required />
+          <input type="email" placeholder="Email" name="email" required />
+          <input type="password" placeholder="Senha" name="password" required />
+          <select name="user-type" required>
+            <option value="" disabled selected>Selecione o tipo de conta</option>
+            <option value="comprador">Comprador</option>
+            <option value="anunciante">Anunciante</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit">Registrar</button>
         </form>
       </div>
+
+      <!-- Formulário de Login -->
       <div class="sign-in">
-        <form>
+        <form id="login-form">
           <h1>Entrar</h1>
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Senha" />
+          <input
+            type="email"
+            placeholder="Email"
+            id="login-email"
+            name="email"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            id="login-password"
+            name="password"
+            required
+          />
+          <select name="user-type" required>
+            <option value="" disabled selected>Selecione o tipo de conta</option>
+            <option value="comprador">Comprador</option>
+            <option value="anunciante">Anunciante</option>
+            <option value="admin">Admin</option>
+          </select>
           <a href="#">Esqueceu a senha?</a>
-          <button>Entrar</button>
+          <button type="submit">Entrar</button>
         </form>
       </div>
+
+      <!-- Painéis de Alternância -->
       <div class="toogle-container">
         <div class="toogle">
           <div class="toogle-panel toogle-left">
@@ -68,6 +97,7 @@
         </div>
       </div>
     </div>
-    <script src="Scripts/script.js"></script>
+
+    <script src="Scripts/"></script>
   </body>
 </html>
