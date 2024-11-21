@@ -3,7 +3,7 @@
     const adId = urlParams.get('id');
 
     try {
-        const response = await fetch(`https://api.exemplo.com/anuncios/${adId}`);
+        const response = await fetch(`https://localhost:8080/apis/ad/get-one${adId}`);
         const ad = await response.json();
 
         if (ad) {

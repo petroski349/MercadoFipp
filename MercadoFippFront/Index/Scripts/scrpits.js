@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userType = loginForm['user-type'].value;
 
         try {
-            const response = await fetch('https:///login', {
+            const response = await fetch('https://hostlocal:8080/access/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

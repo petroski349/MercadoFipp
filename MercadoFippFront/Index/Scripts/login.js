@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
-    const loginButton = document.getElementById('login');
-    const registerButton = document.getElementById('register');
     const container = document.getElementById('container');
 
-   
+    let token = ''; // Variável para armazenar o token JWT
+
     // Evento de envio do formulário de login
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -25,9 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const data = await response.json();
+                token = data.token; // Salva o token retornado na variável
+                localStorage.setItem('authToken', token); // Armazena o token no localStorage
                 alert('Login bem-sucedido! Redirecionando...');
-                // Redirecionar após login
-                window.location.href = '/dashboard.html';
+                window.location.href = '/dashboard.html'; // Redireciona para o dashboard
             } else {
                 const error = await response.json();
                 alert(`Erro no login: ${error.message}`);
@@ -57,10 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
                 alert('Cadastro realizado com sucesso! Faça login para continuar.');
-                // Alterna para o formulário de login
-                container.classList.remove('right-panel-active');
+                container.classList.remove('right-panel-active'); // Alterna para o formulário de login
             } else {
                 const error = await response.json();
                 alert(`Erro no cadastro: ${error.message}`);
