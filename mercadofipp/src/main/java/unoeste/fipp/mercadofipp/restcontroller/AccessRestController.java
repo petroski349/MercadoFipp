@@ -1,32 +1,82 @@
 package unoeste.fipp.mercadofipp.restcontroller;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import unoeste.fipp.mercadofipp.db.entity.User;
 import unoeste.fipp.mercadofipp.restcontroller.security.JWTTokenProvider;
-import unoeste.fipp.mercadofipp.restcontroller.security.filters.AccessFilter;
 import unoeste.fipp.mercadofipp.service.UserService;
 
 @RestController
-@RequestMapping(value="access/")
+@RequestMapping(value = "access/")
 public class AccessRestController {
-    @Autowired
-    private  UserService userService;
-    @PostMapping(value = "login")
-    public ResponseEntity<Object> login(String name, String pass)
-    {
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private JWTTokenProvider jwtTokenProvider;
+
+    @PostMapping(value = "login")
+    public ResponseEntity<Object> login(@RequestParam String name, @RequestParam String pass, @RequestParam boolean isAdm) {
         User user = userService.get(name);
-        if(user != null){
-            if(user.getPass() == pass) {
-            }
-                return ResponseEntity.ok().body(true);                             //terá que retornar o token
+        if (user != null && user.getPass().equals(pass)) {
+            if(isAdm && user.getLevel() == '1')
+                return ResponseEntity.badRequest().body("Acesso negado");
+            // Gera o token JWT
+            String token = jwtTokenProvider.getToken(user.getName(),user.getLevel());
+
+            // Retorna o token para o cliente
+            return ResponseEntity.ok().body(token);
         }
-        return ResponseEntity.badRequest().body("Senha incorreta");
+        return ResponseEntity.badRequest().body("Senha ou nome de usuário incorretos");
     }
 
+    @PostMapping(value = "register")
+    public ResponseEntity<Object> register(@RequestBody User user){
+        if(userService.get(user.getName()) == null){
+            user = userService.add(user);
+            if(user != null)
+                return ResponseEntity.ok().body("Registrado com sucesso!");
+            else
+                return ResponseEntity.badRequest().body("Erro");
+        }
+        else{
+            return ResponseEntity.badRequest().body("Loguin ja em uso!");
+        }
+
+    }
+
+    @PostMapping(value = "alterar-senha")
+    public ResponseEntity<Object> alterarSenha(String name,String novaSenha){
+        User user = userService.get(name);
+        if(user != null){
+            if(userService.alterarSenha(user.getId(),novaSenha))
+                return ResponseEntity.ok().body("Senha alterada com sucesso");
+            else
+                return ResponseEntity.badRequest().body("Falha ao alterar a senha");
+        }
+        else
+            return ResponseEntity.badRequest().body("login de usuário não cadastrado");
+    }
+
+//    @PostMapping(value = "get-user")
+//    public ResponseEntity<Object> processToken(String token) {
+//        Claims claims = null;
+//        if(jwtTokenProvider.verifyToken(token))
+//            claims = JWTTokenProvider.getAllClaimsFromToken(token);
+//        else
+//            System.out.println("token invalido");
+//
+//        if (claims != null) {
+//            String usuario = claims.getSubject(); // O "subject" é o usuário
+//            String nivel = claims.get("nivel", String.class); // A "claim" de nível
+//
+//            return ResponseEntity.ok().body(usuario+" "+nivel);
+//        } else {
+//            return ResponseEntity.ok().body("Erro");
+//        }
+//    }
 
 }

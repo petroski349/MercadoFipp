@@ -24,6 +24,9 @@ public class AdService {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private UserService userService;
+
     public Ad getAd(Long id) {
         Ad ad = adRepository.findById(id).get();
         return ad;
@@ -74,6 +77,16 @@ public class AdService {
         List<Ad> ads;
         ads = adRepository.findAllByCategory(categoryId);
         return ads;
+    }
+
+    public  List<Ad> getALLByUser(String name){
+        List<Ad> ads;
+        ads = adRepository.findAllByUser(userService.get(name).getId());
+        return ads;
+    }
+
+    public boolean isMyAd(String name,Long id){
+        return userService.get(name).getId() == id;
     }
 }
 

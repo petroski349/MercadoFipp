@@ -15,5 +15,18 @@ public class UserService {
         return user;
     }
 
+    public User add(User user){
+        user = userRepository.save(user);
+        return user;
+    }
+
+    public boolean alterarSenha(Long id,String senhaNova){
+        try{
+            userRepository.updateSenha(senhaNova,id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
 }
