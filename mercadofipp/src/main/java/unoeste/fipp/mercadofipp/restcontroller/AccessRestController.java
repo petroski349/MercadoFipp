@@ -19,9 +19,11 @@ public class AccessRestController {
     private JWTTokenProvider jwtTokenProvider;
 
     @PostMapping(value = "login")
-    public ResponseEntity<Object> login(@RequestParam String name, @RequestParam String pass) {
+    public ResponseEntity<Object> login(@RequestParam String name, @RequestParam String pass, @RequestParam boolean isAdm) {
         User user = userService.get(name);
         if (user != null && user.getPass().equals(pass)) {
+            if(isAdm && user.getLevel() == '1')
+                return ResponseEntity.badRequest().body("Acesso negado");
             // Gera o token JWT
             String token = jwtTokenProvider.getToken(user.getName(),user.getLevel());
 
