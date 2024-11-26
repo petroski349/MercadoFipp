@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Anúncio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/detalhesanuncio.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo" class="logo-img"> Mercado FIPP
+            </a>
+            <ul class="nav-links">
+                <li><a href="paginicial.html">Início</a></li>
+                <li><a href="search.html">Anúncios</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção de Detalhes do Anúncio -->
+    <section class="ad-details">
+        <h2 id="ad-title"></h2>
+        <p id="ad-description"></p>
+        <p><strong>Categoria:</strong> <span id="ad-category"></span></p>
+        <p><strong>Data de Anúncio:</strong> <span id="ad-date"></span></p>
+        <p><strong>Valor:</strong> R$ <span id="ad-value"></span></p>
+        <div id="ad-images"></div>
+        <a id="qna-link" href="#" class="qna-button">Perguntas e Respostas</a>
+    </section>
+
+    <script src="Scripts/detalhesanuncio.js"></script>
+</body>
+</html>
