@@ -40,12 +40,10 @@
         <form id="register-form">
           <h1>Criar Conta</h1>
           <input type="text" placeholder="Nome" name="name" required />
-          <input type="email" placeholder="Email" name="email" required />
           <input type="password" placeholder="Senha" name="password" required />
           <select name="user-type" required>
             <option value="" disabled selected>Selecione o tipo de conta</option>
-            <option value="comprador">Comprador</option>
-            <option value="anunciante">Anunciante</option>
+            <option value="comprador">Vendedor</option>
             <option value="admin">Admin</option>
           </select>
           <button type="submit">Registrar</button>
@@ -57,10 +55,10 @@
         <form id="login-form">
           <h1>Entrar</h1>
           <input
-            type="email"
-            placeholder="Email"
-            id="login-email"
-            name="email"
+            type="Name"
+            placeholder="Nome"
+            id="login-Name"
+            name="Name"
             required
           />
           <input
@@ -72,8 +70,7 @@
           />
           <select name="user-type" required>
             <option value="" disabled selected>Selecione o tipo de conta</option>
-            <option value="comprador">Comprador</option>
-            <option value="anunciante">Anunciante</option>
+            <option value="comprador">Vendedor</option>
             <option value="admin">Admin</option>
           </select>
           <a href="#">Esqueceu a senha?</a>

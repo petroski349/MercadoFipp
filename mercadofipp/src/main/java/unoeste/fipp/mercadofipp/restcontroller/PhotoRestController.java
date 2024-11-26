@@ -49,26 +49,26 @@ public class PhotoRestController {
             return ResponseEntity.badRequest().body("Erro");
     }
 
-    @PostMapping(value="add")
-    public ResponseEntity<Object> add(String nome, String tipo, String nivel, MultipartFile imagem)
-    {
-        Pokemon pokemon=null;
-        boolean erro=false;
-        try{
-            String filename=""+(new Date().getTime())+imagem.getOriginalFilename().substring(imagem.getOriginalFilename().lastIndexOf("."));
-            Files.copy(imagem.getInputStream(), Paths.get(getStaticPath()).resolve(filename));
-            pokemon=new Pokemon(nome,tipo, Integer.parseInt(nivel),"");
-            pokemon.setImagem(filename);
-            pokeList.add(pokemon);
-        }
-        catch(Exception e){
-            System.out.println(e);
-            erro=true;
-        }
-
-        if(!erro)
-            return ResponseEntity.ok(pokemon);
-        else
-            return ResponseEntity.badRequest().body("Não é possível cadastrar o pokemon");
-    }
+//    @PostMapping(value="add")
+//    public ResponseEntity<Object> add(String nome, String tipo, String nivel, MultipartFile imagem)
+//    {
+//        Pokemon pokemon=null;
+//        boolean erro=false;
+//        try{
+//            String filename=""+(new Date().getTime())+imagem.getOriginalFilename().substring(imagem.getOriginalFilename().lastIndexOf("."));
+//            Files.copy(imagem.getInputStream(), Paths.get(getStaticPath()).resolve(filename));
+//            pokemon=new Pokemon(nome,tipo, Integer.parseInt(nivel),"");
+//            pokemon.setImagem(filename);
+//            pokeList.add(pokemon);
+//        }
+//        catch(Exception e){
+//            System.out.println(e);
+//            erro=true;
+//        }
+//
+//        if(!erro)
+//            return ResponseEntity.ok(pokemon);
+//        else
+//            return ResponseEntity.badRequest().body("Não é possível cadastrar o pokemon");
+//    }
 }
