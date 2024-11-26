@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
+    const loginForm = document.getElementById('login -form');
     const registerForm = document.getElementById('register-form');
     const container = document.getElementById('container');
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, userType }),
+                body: JSON.stringify({ name: email, pass: password, isAdm: userType === 'admin' }),
             });
 
             if (response.ok) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 token = data.token; // Salva o token retornado na variável
                 localStorage.setItem('authToken', token); // Armazena o token no localStorage
                 alert('Login bem-sucedido! Redirecionando...');
-                window.location.href = '/dashboard.html'; // Redireciona para o dashboard
+                window.location.href = '/paginainicial.html'; 
             } else {
                 const error = await response.json();
                 alert(`Erro no login: ${error.message}`);

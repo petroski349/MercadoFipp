@@ -22,7 +22,9 @@
                 <li><a href="ajuda.html">Ajuda</a></li>
             </ul>
             <div class="auth-buttons">
-                <button onclick="location.href='login.html'">Login</button>
+                <button id="login-button" onclick="location.href='login.html'">Login</button>
+                <button id="logout-button" style="display: none;" onclick="logout()">Logout</button>
+                <button id="settings-button" style="display: none;" onclick="goToSettings()">Configurações</button>
             </div>
         </nav>
     </header>
