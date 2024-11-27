@@ -1,7 +1,5 @@
-// URL da API para buscar os anúncios mais recentes
 const apiUrl = 'http://localhost:8080/apis/ad/latest'; 
 
-// Função para buscar anúncios da API
 async function fetchAds() {
     try {
         const response = await fetch(apiUrl, {
@@ -15,20 +13,18 @@ async function fetchAds() {
             throw new Error(`Erro ao buscar anúncios: ${response.status}`);
         }
 
-        const ads = await response.json(); // Espera um array de objetos JSON
-        displayAds(ads);
+        const ads = await response.json(); 
+        displayAds(ads); 
     } catch (error) {
         console.error('Erro:', error);
         alert('Não foi possível carregar os anúncios. Tente novamente mais tarde.');
     }
 }
 
-// Função para exibir anúncios no contêiner
 function displayAds(ads) {
     const adsContainer = document.getElementById('ads-container');
-    adsContainer.innerHTML = ''; // Limpa o contêiner antes de adicionar novos anúncios
+    adsContainer.innerHTML = '';
 
-    // Itera sobre cada anúncio recebido e cria elementos HTML
     ads.forEach(ad => {
         const adElement = document.createElement('div');
         adElement.classList.add('ad');
@@ -38,7 +34,6 @@ function displayAds(ads) {
             <p>${ad.title} - R$ ${ad.price.toFixed(2)}</p>
         `;
 
-        // Torna cada anúncio clicável
         adElement.addEventListener('click', () => {
             window.location.href = `ad-details.html?id=${ad.id}`;
         });
@@ -47,54 +42,62 @@ function displayAds(ads) {
     });
 }
 
-// Função para verificar se o usuário está logado e se é administrador
-function checkLoginStatus() {
-    const token = localStorage.getItem('authToken'); // Obtém o token do localStorage
-    const loginButton = document.getElementById('login-button'); // Obtém o botão de login
-    const logoutButton = document.getElementById('logout-button'); // Obtém o botão de logout
-    const settingsButton = document.getElementById('settings-button'); // Obtém o botão de configurações
+async function checkLoginStatus() {
+    const token = localStorage.getItem('authToken'); 
+    const loginButton = document.getElementById('login-button'); 
+    const logoutButton = document.getElementById('logout-button'); 
+    const settingsButton = document.getElementById('settings-button'); 
 
     if (token) {
-        // Se o token existir, oculta o botão de login e exibe o botão de logout
         loginButton.style.display = 'none';
         logoutButton.style.display = 'block';
-
-        // Verifica se o usuário é administrador
-        const userRole = getUser RoleFromToken(token); // Função para obter o papel do usuário do token
-        if (userRole === 'admin') {
-            settingsButton.style.display = 'block'; // Exibe o botão de configurações
+        const isAdmin = await checkIfAdmin(token); 
+        if (isAdmin) {
+            settingsButton.style.display = 'block'; 
         } else {
-            settingsButton.style.display = 'none'; // Oculta o botão de configurações
+            settingsButton.style.display = 'none'; 
         }
     } else {
-        // Se não houver token, exibe o botão de login e oculta o botão de logout e configurações
         loginButton.style.display = 'block';
         logoutButton.style.display = 'none';
         settingsButton.style.display = 'none';
     }
 }
 
+async function checkIfAdmin(token) {
+    try {
+        const response = await fetch('http://localhost:8080/api/check-admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-// Função para redirecionar para a página de configurações
+        if (!response.ok) {
+            throw new Error('Erro ao verificar o status de administrador');
+        }
+
+        const isAdmin = await response.json(); 
+        return isAdmin; 
+    } catch (error) {
+        console.error('Erro:', error);
+        return false; 
+    }
+}
+
 function goToSettings() {
-    window.location.href = 'interfaceadmin.html'; // Redireciona para a página de configurações
+    window.location.href = 'interfaceadmin.html'; 
 }
 
-// Chama a função para verificar o status de login ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    checkLoginStatus();
-});
-
-// Função para fazer logout
 function logout() {
-    localStorage.removeItem('authToken'); // Remove o token do localStorage
-    alert('Você foi desconectado.'); // Mensagem de confirmação
-    checkLoginStatus(); // Atualiza a interface
-    window.location.href = 'login.html'; // Redireciona para a página de login
+    localStorage.removeItem('authToken'); 
+    alert('Você foi desconectado.'); 
+    checkLoginStatus(); 
+    window.location.href = 'login.html'; 
 }
 
-// Chama a função para verificar o status de login ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     checkLoginStatus();
-    fetchAds(); // Chama a função para buscar anúncios
+    fetchAds(); 
 });

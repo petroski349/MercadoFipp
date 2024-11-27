@@ -1,7 +1,7 @@
 document.getElementById("recovery-form")?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const username = document.getElementById("username").value;
 
     try {
         const response = await fetch("http://localhost:8080/access/recuperar-senha", {
@@ -9,7 +9,7 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ username })
         });
 
         if (response.ok) {
@@ -20,7 +20,7 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
             document.getElementById("masked-password").textContent = maskedPassword;
             document.getElementById("password-display").style.display = "block";
         } else {
-            alert("E-mail não encontrado.");
+            alert("Nome de usuário não encontrado.");
         }
     } catch (error) {
         console.error("Erro:", error);
@@ -28,12 +28,10 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
     }
 });
 
-// Evento para mostrar a opção de redefinir senha
 document.getElementById("show-reset").addEventListener("click", () => {
     document.getElementById("reset-password").style.display = "block";
 });
 
-// Evento para enviar a nova senha para o back-end
 document.getElementById("submit-new-password").addEventListener("click", async () => {
     const newPassword = document.getElementById("new-password").value;
 
@@ -48,7 +46,7 @@ document.getElementById("submit-new-password").addEventListener("click", async (
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email: document.getElementById("email").value, senha: newPassword })
+            body: JSON.stringify({ username: document.getElementById("username").value, senha: newPassword })
         });
 
         if (response.ok) {

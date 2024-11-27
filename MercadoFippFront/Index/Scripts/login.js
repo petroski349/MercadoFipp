@@ -7,12 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Evento de envio do formulário de login
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = loginForm.Name.value;
-        const password = loginForm.password.value;
-        const Level = loginForm['user-type'].value;
-        
-        // Convertendo userType para número
-        const level = userType === 'admin' ? 1 : 2;
+        const name = loginForm['Name'].value; // Corrige a obtenção do valor
+        const password = loginForm['password'].value;
+        const userType = loginForm['user-type'].value; // Obtém o tipo de usuário
+        const isAdmin = userType === 'admin'; // Retorna true se for admin, caso contrário false
 
         try {
             const response = await fetch('http://localhost:8080/access/login', {
@@ -20,12 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
-                    usr_name: name, 
-                    usr_pass: password, 
-                    usr_level: level 
+                body: JSON.stringify({
+                    name: name,
+                    pass: password,
+                    isAdm: level,
                 }),
             });
+
             if (response.ok) {
                 const data = await response.json();
                 token = data.token; // Salva o token retornado na variável
@@ -45,12 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Evento de envio do formulário de registro
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = registerForm.name.value;
-        const password = registerForm.password.value;
-        const level = registerForm['user-type'].value;
-        
-        // Convertendo userType para número
-        const level = userType === 'admin' ? 1 : 2;
+        const name = registerForm['name'].value; // Corrige a obtenção do valor
+        const password = registerForm['password'].value;
+        const userType = registerForm['user-type'].value; // Obtém o tipo de usuário
+        const isAdmin = userType === 'admin'; // Retorna true se for admin, caso contrário false
 
         try {
             const response = await fetch('http://localhost:8080/access/register', {
@@ -58,12 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
-                    usr_name, 
-                    usr_pass, 
-                    usr_level: userTypeNumber 
+                body: JSON.stringify({
+                    name: name,
+                    pass: password,
+                    isAdm: level,
                 }),
             });
+
             if (response.ok) {
                 alert('Cadastro realizado com sucesso! Faça login para continuar.');
                 container.classList.remove('right-panel-active'); // Alterna para o formulário de login

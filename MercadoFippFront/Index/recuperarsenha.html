@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,23 @@
     <link rel="stylesheet" href="Styles/recuperarsenha.css">
 </head>
 <body>
+
+    <nav class="navbar">
+        <a href="paginicial.html" class="logo">
+            <img src="img/logo.png" alt="Logo" class="logo-img">
+            MercadoFipp
+        </a>
+        <ul class="nav-links">
+            <li><a href="paginicial.html">Início</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <h2>Recuperação de Senha</h2>
+        <h2>Recuperando Senha</h2>
         <form id="recovery-form">
-            <label for="email">Digite seu e-mail:</label>
-            <input type="email" id="email" required>
+            <label for="username">Digite nome do usuário</label>
+            <input type="text" id="username" required>
             <button type="submit">Recuperar Senha</button>
         </form>
         <div id="password-display" style="display: none;">
@@ -25,6 +37,7 @@
             <button id="submit-new-password">Salvar Nova Senha</button>
         </div>
     </div>
+
     <script src="Scripts/recuperasenha.js"></script>
 </body>
 </html>
