@@ -57,7 +57,7 @@ async function addCategory() {
     const newCategory = document.getElementById('new-category').value;
 
     const response = await fetch('http://localhost:8080/apis/category/add', {
-        method: 'GET', 
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -75,8 +75,8 @@ async function addCategory() {
 
 // Função para excluir uma categoria
 async function deleteCategory(id) {
-    const response = await fetch(`http://localhost:8080/apis/category/delete?id=${id}`, {
-        method: 'GET', 
+    const response = await fetch(`https://localhost:8080/apis/category/delete${id}`, {
+        method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
     });
 

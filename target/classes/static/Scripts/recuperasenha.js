@@ -1,4 +1,3 @@
-// Evento de envio do formulário de recuperação de senha
 document.getElementById("recovery-form")?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -14,7 +13,12 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
         });
 
         if (response.ok) {
-            alert("Um link para redefinir sua senha foi enviado para seu e-mail.");
+            const data = await response.json();
+            
+            // Exibe a senha com a máscara
+            const maskedPassword = "****" + data.senha.slice(-4);
+            document.getElementById("masked-password").textContent = maskedPassword;
+            document.getElementById("password-display").style.display = "block";
         } else {
             alert("Nome de usuário não encontrado.");
         }
@@ -24,12 +28,10 @@ document.getElementById("recovery-form")?.addEventListener("submit", async (even
     }
 });
 
-// Evento para exibir o formulário de redefinição de senha
 document.getElementById("show-reset").addEventListener("click", () => {
     document.getElementById("reset-password").style.display = "block";
 });
 
-// Evento para enviar a nova senha e atualizar
 document.getElementById("submit-new-password").addEventListener("click", async () => {
     const newPassword = document.getElementById("new-password").value;
 
@@ -38,15 +40,13 @@ document.getElementById("submit-new-password").addEventListener("click", async (
         return;
     }
 
-    const username = document.getElementById("username").value;
-
     try {
         const response = await fetch("http://localhost:8080/atualizar-senha", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username, senha: newPassword })
+            body: JSON.stringify({ username: document.getElementById("username").value, senha: newPassword })
         });
 
         if (response.ok) {

@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ebebeb;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Garante que as áreas fiquem separadas */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0058b6;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    flex: 1; /* Ocupa o espaço mínimo necessário */
+}
+
+.logo-img {
+    width: 40px; /* Ajusta o tamanho da imagem do logo */
+    height: auto;
+    margin-right: 8px; /* Espaço entre a imagem e o texto */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    justify-content: center; /* Centraliza os links dentro da área */
+    flex: 2; /* Ocupa mais espaço para centralizar os links */
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.auth-buttons {
+    flex: 1; /* Mantém os botões alinhados à direita */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.auth-buttons button:hover {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+/* Estilo da página de recuperação de senha */
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0058b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004082;
+}
+
+#password-display {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#reset-password {
+    display: none;
+    margin-top: 20px;
+}

@@ -7,19 +7,12 @@ function getAdIdFromUrl() {
 // Função para buscar os detalhes do anúncio
 async function fetchAdDetails(adId) {
     try {
-        // Faz a requisição para a API com o parâmetro 'id'
         const response = await fetch(`apis/ad/get-one?id=${adId}`);
         if (!response.ok) {
             throw new Error('Erro ao buscar os detalhes do anúncio');
         }
         const adDetails = await response.json();
-
-        // Verifica se a resposta contém um anúncio e o exibe
-        if (adDetails && adDetails.id) {
-            displayAdDetails(adDetails);
-        } else {
-            throw new Error('Anúncio não encontrado');
-        }
+        displayAdDetails(adDetails);
     } catch (error) {
         console.error(error);
         alert('Erro ao carregar os detalhes do anúncio. Tente novamente mais tarde.');

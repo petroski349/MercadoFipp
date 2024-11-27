@@ -1,13 +1,11 @@
-const apiUrl = 'http://localhost:8080/apis/ad/lates'; // Alterado para 'lates' (endpoint correto)
+const apiUrl = 'http://localhost:8080/apis/ad/latest'; 
 
 async function fetchAds() {
     try {
-        const token = localStorage.getItem('authToken'); // Pegando o token armazenado no localStorage
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Passando o token de autenticação
+                'Content-Type': 'application/json'
             }
         });
 
@@ -15,8 +13,8 @@ async function fetchAds() {
             throw new Error(`Erro ao buscar anúncios: ${response.status}`);
         }
 
-        const ads = await response.json();
-        displayAds(ads); // Exibindo os anúncios na página
+        const ads = await response.json(); 
+        displayAds(ads); 
     } catch (error) {
         console.error('Erro:', error);
         alert('Não foi possível carregar os anúncios. Tente novamente mais tarde.');
@@ -45,19 +43,19 @@ function displayAds(ads) {
 }
 
 async function checkLoginStatus() {
-    const token = localStorage.getItem('authToken');
-    const loginButton = document.getElementById('login-button');
-    const logoutButton = document.getElementById('logout-button');
-    const settingsButton = document.getElementById('settings-button');
+    const token = localStorage.getItem('authToken'); 
+    const loginButton = document.getElementById('login-button'); 
+    const logoutButton = document.getElementById('logout-button'); 
+    const settingsButton = document.getElementById('settings-button'); 
 
     if (token) {
         loginButton.style.display = 'none';
         logoutButton.style.display = 'block';
-        const isAdmin = await checkIfAdmin(token);
+        const isAdmin = await checkIfAdmin(token); 
         if (isAdmin) {
-            settingsButton.style.display = 'block';
+            settingsButton.style.display = 'block'; 
         } else {
-            settingsButton.style.display = 'none';
+            settingsButton.style.display = 'none'; 
         }
     } else {
         loginButton.style.display = 'block';
@@ -80,26 +78,26 @@ async function checkIfAdmin(token) {
             throw new Error('Erro ao verificar o status de administrador');
         }
 
-        const isAdmin = await response.json();
-        return isAdmin;
+        const isAdmin = await response.json(); 
+        return isAdmin; 
     } catch (error) {
         console.error('Erro:', error);
-        return false;
+        return false; 
     }
 }
 
 function goToSettings() {
-    window.location.href = 'interfaceadmin.html';
+    window.location.href = 'interfaceadmin.html'; 
 }
 
 function logout() {
-    localStorage.removeItem('authToken');
-    alert('Você foi desconectado.');
-    checkLoginStatus();
-    window.location.href = 'login.html';
+    localStorage.removeItem('authToken'); 
+    alert('Você foi desconectado.'); 
+    checkLoginStatus(); 
+    window.location.href = 'login.html'; 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     checkLoginStatus();
-    fetchAds(); // Carregando os anúncios ao carregar a página
+    fetchAds(); 
 });

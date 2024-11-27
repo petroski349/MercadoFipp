@@ -1,49 +1,54 @@
 (async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const adId = urlParams.get('id');
+    // Função para buscar os anúncios
+    async function searchAds(query) {
+        try {
+            const response = await fetch(`http://localhost:8080/apis/ad/search?query=${query}`);
+            if (response.ok) {
+                const ads = await response.json();
 
-    if (!adId) {
-        console.log("Nenhum ID de anúncio fornecido.");
-        return; // Não faz nada se não houver ID na URL
+                if (ads && ads.length > 0) {
+                    const adsContainer = document.getElementById('adsContainer');
+                    adsContainer.innerHTML = ''; // Limpa os anúncios antigos
+                    ads.forEach(ad => {
+                        const adElement = document.createElement('div');
+                        adElement.classList.add('ad-item');
+                        adElement.innerHTML = `
+                            <h3>${ad.title}</h3>
+                            <p>${ad.description}</p>
+                            <p><strong>Preço:</strong> R$ ${ad.price}</p>
+                            <p><strong>Localização:</strong> ${ad.location}</p>
+                            <a href="ad-detail.html?id=${ad.id}" class="view-details">Ver detalhes</a>
+                        `;
+                        adsContainer.appendChild(adElement);
+                    });
+                } else {
+                    const adsContainer = document.getElementById('adsContainer');
+                    adsContainer.innerHTML = '<p>Nenhum anúncio encontrado.</p>';
+                }
+            } else {
+                console.error('Erro na resposta:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar anúncios:', error);
+        }
     }
 
-    try {
-        const response = await fetch(`http://localhost:8080/apis/ad/get-one?id=${adId}`);
-        if (response.ok) {
-            const ad = await response.json();
-
-            if (ad) {
-                document.getElementById('adTitle').innerText = ad.title || "Título não disponível";
-                document.getElementById('adDescription').innerText = ad.description || "Descrição não disponível";
-                document.getElementById('adPrice').innerText = ad.price ? `R$ ${ad.price}` : "Preço não disponível";
-                document.getElementById('adLocation').innerText = ad.location || "Localização não disponível";
-            } else {
-                console.log("Anúncio não encontrado.");
-            }
+    // Evento de envio do formulário de pesquisa
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do formulário
+        const query = document.getElementById('searchInput').value.trim();
+        if (query) {
+            searchAds(query); // Chama a função de busca
         } else {
-            console.error('Erro na resposta:', response.status, response.statusText);
+            alert('Por favor, insira um termo de pesquisa.');
         }
-    } catch (error) {
-        console.error('Erro ao carregar o anúncio:', error);
+    });
+
+    // Caso haja algum parâmetro na URL, pode-se buscar anúncios diretamente ao carregar a página
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryParam = urlParams.get('query');
+    if (queryParam) {
+        document.getElementById('searchInput').value = queryParam; // Preenche o campo de pesquisa
+        searchAds(queryParam); // Realiza a busca automaticamente
     }
 })();
-
-// Função para verificar se o usuário está logado
-function isLoggedIn() {
-    const token = localStorage.getItem('authToken'); // Obtém o token do localStorage
-    return token !== null; // Retorna true se o token existir, caso contrário false
-}
-
-// Adiciona um evento de clique ao botão "Criar Anúncio"
-document.getElementById('createAdButton').addEventListener('click', function(event) {
-    event.preventDefault(); // Previne o comportamento padrão do link
-
-    if (isLoggedIn()) {
-        // Se o usuário estiver logado, redireciona para a página de criação de anúncio
-        window.location.href = 'cadanuncio.html';
-    } else {
-        // Se o usuário não estiver logado, redireciona para a página de login
-        alert('Você precisa estar logado para criar um anúncio.');
-        window.location.href = 'login.html';
-    }
-});
