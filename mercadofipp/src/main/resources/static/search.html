@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Anúncios</title>
+    <!--<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="Styles/search.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo" class="logo-img"> Mercado FIPP
+            </a>
+            <ul class="nav-links">
+                <li><a href="paginicial.html">Início</a></li>
+                <li><a href="search.html">Anúncios</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+            <div class="navbar-buttons">
+                <div class="search-container">
+                    <form id="searchForm">
+                        <input type="text" id="searchInput" placeholder="Buscar Anúncios...">
+                        <button type="submit">Pesquisar</button>
+                    </form>
+                </div>
+                <span class="separator">ou</span>
+                <a href="#" id="createAdButton" class="create-ad-button">Criar Anúncio</a>            </div>
+        </nav>
+    </header>
+
+    <!-- Resultados da Pesquisa -->
+    <section class="search-results">
+        <h2>Resultados da Pesquisa</h2>
+        <div class="ads-container" id="adsContainer">
+            <!-- Os anúncios serão carregados dinamicamente -->
+        </div>
+    </section>
+
+    <script src="Scripts/search.js"></script>
+
+</body>
+</html>
